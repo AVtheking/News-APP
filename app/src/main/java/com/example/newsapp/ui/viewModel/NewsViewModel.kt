@@ -6,6 +6,7 @@ import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.example.newsapp.ui.Repositroy.NewsRepository
 import com.example.newsapp.utils.Resource
+import com.example.newsapp.utils.model.Article
 import com.example.newsapp.utils.model.NewsResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -14,6 +15,7 @@ import retrofit2.Response
 class NewsViewModel(val newsRepository: NewsRepository): ViewModel() {
 
     val breakingNewsPage=1
+    val searchNewsPage=1
     fun getBreakingNews(countryCode: String) = liveData(Dispatchers.IO) {
         emit(Resource.Loading())
         try {
@@ -26,5 +28,29 @@ class NewsViewModel(val newsRepository: NewsRepository): ViewModel() {
         } catch (e: Exception) {
             emit(Resource.Error(e.toString()))
         }
+    }
+    fun getSearchNews(searchQuery:String)=liveData(Dispatchers.IO){
+        emit(Resource.Loading())
+        try {
+            val response=newsRepository.getSearchNews(searchQuery,searchNewsPage)
+            if(response.isSuccessful())
+            {
+                emit(Resource.Success(response.body()))
+            }
+            else
+            {
+                emit(Resource.Error(response.message()))
+            }
+        }catch (e:Exception){
+            emit(Resource.Error(e.toString()))
+        }
+    }
+    fun getArticles()=newsRepository.getArticles()
+    fun upsert(article:Article)=viewModelScope.launch {
+        newsRepository.upsert(article   )
+
+    }
+    fun deleteArticle(article:Article)=viewModelScope.launch {
+        newsRepository.delete(article)
     }
 }

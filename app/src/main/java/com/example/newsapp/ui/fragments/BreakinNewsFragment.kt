@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.newsapp.R
@@ -38,6 +40,15 @@ class BreakinNewsFragment : Fragment(R.layout.fragment_breakin_news) {
         super.onViewCreated(view, savedInstanceState)
         newsViewModel=(activity as NewsActivity).newsViewModel
         setUpRecyclerView()
+        newsadapter.setOnItemClickListener {
+            val bundle=Bundle().apply {
+                putSerializable("article",it)
+            }
+           findNavController().navigate(
+                R.id.action_breakinNewsFragment_to_articleFragment,
+                bundle
+            )
+        }
         newsViewModel.getBreakingNews("in").observe(viewLifecycleOwner, Observer{response->
             when(response)
             {

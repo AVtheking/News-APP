@@ -3,6 +3,7 @@ package com.example.newsapp.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -19,6 +20,15 @@ import androidx.navigation.fragment.NavHostFragment
 class NewsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
      lateinit var newsViewModel: NewsViewModel
+    fun hideBottomNavigationView() {
+        // Assuming your bottom navigation view has the id "bottomNavigationView"
+        binding.bottomNavigationView.visibility = View.GONE
+    }
+
+    fun showBottomNavigationView() {
+        // Assuming your bottom navigation view has the id "bottomNavigationView"
+        binding. bottomNavigationView.visibility = View.VISIBLE
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -29,6 +39,7 @@ class NewsActivity : AppCompatActivity() {
         binding=DataBindingUtil.setContentView(this,R.layout.activity_main)
         val navController=this.findNavController(R.id.newsNavHostFragment)
         binding.bottomNavigationView.setupWithNavController(navController)
+
 
 
 

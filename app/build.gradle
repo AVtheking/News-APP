@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs'
+
 }
 
 android {
@@ -34,7 +36,10 @@ android {
     buildFeatures{
         dataBinding=true
     }
+
+
 }
+
 
 dependencies {
 
@@ -88,4 +93,5 @@ dependencies {
     def nav_version = "2.6.0"
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+
 }
