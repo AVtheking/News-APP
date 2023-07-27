@@ -44,6 +44,7 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
         super.onViewCreated(view, savedInstanceState)
         newsViewModel = (activity as NewsActivity).newsViewModel
         setUpRecyclerView()
+        requireActivity().title="Saved News"
         newsadapter.setOnItemClickListener {
             val bundle=Bundle().apply {
                 putSerializable("article",it)

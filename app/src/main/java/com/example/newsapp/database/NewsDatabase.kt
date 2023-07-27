@@ -24,7 +24,7 @@ abstract class NewsDatabase: RoomDatabase() {
                 context.applicationContext,
                 NewsDatabase::class.java,
                 "newsdb"
-            ).build()
+            ).fallbackToDestructiveMigration().build()
 
 
 

@@ -40,6 +40,7 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
         (activity as? NewsActivity)?.hideBottomNavigationView()
         newsViewModel=(activity as NewsActivity).newsViewModel
 
+
         var article=args.article
         binding.webView.apply {
             webViewClient=WebViewClient()

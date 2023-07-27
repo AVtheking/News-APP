@@ -3,4 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="custom_fab_background_color">#00FF00</color>
+    <color name="colorPrimary">#FF4081</color>         <!-- Primary color for the top bar -->
+    <color name="colorPrimaryDark">#E91E63</color>     <!-- Darker shade of primary color -->
+    <color name="colorAccent">#009688</color>         <!-- Accent color for UI elements -->
+    <color name="your_top_bar_title_color">#FFFFFF</color> <!-- Custom color for the top bar title -->
 </resources>

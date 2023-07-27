@@ -5,11 +5,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AbsListView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 import com.example.newsapp.R
 import com.example.newsapp.adapters.NewsAdapter
@@ -40,6 +42,7 @@ class BreakinNewsFragment : Fragment(R.layout.fragment_breakin_news) {
         super.onViewCreated(view, savedInstanceState)
         newsViewModel=(activity as NewsActivity).newsViewModel
         setUpRecyclerView()
+        requireActivity().title="News"
         newsadapter.setOnItemClickListener {
             val bundle=Bundle().apply {
                 putSerializable("article",it)
@@ -55,7 +58,9 @@ class BreakinNewsFragment : Fragment(R.layout.fragment_breakin_news) {
                 is Resource.Success->{
                     hideProgreesBar()
                     response.data?.let {
-                        newsadapter.differ.submitList(it.articles)
+                        newsadapter.differ.submitList(it.articles.toList())
+
+
                     }
                 }
                 is Resource.Error->{
@@ -73,12 +78,13 @@ class BreakinNewsFragment : Fragment(R.layout.fragment_breakin_news) {
 
     private fun showProgressBar() {
         binding.paginationProgressBar.visibility=View.VISIBLE
+
     }
 
     private fun hideProgreesBar() {
         binding.paginationProgressBar.visibility=View.INVISIBLE
-    }
 
+    }
 
 
     private fun setUpRecyclerView() {
@@ -86,6 +92,7 @@ class BreakinNewsFragment : Fragment(R.layout.fragment_breakin_news) {
         binding.rvBreakingNews.apply {
            adapter=newsadapter
             layoutManager=LinearLayoutManager(activity)
+
         }
 
     }

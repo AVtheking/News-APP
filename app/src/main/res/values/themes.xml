@@ -4,6 +4,17 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <!-- Customize your app's colors here -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- Customize your top bar title style -->
+        <item name="android:textColorPrimary">@color/your_top_bar_title_color</item>
+        <item name="android:textSize">@dimen/your_top_bar_title_text_size</item>
+    </style>
+
 
     <style name="Theme.NewsApp" parent="Base.Theme.NewsApp" />
 </resources>

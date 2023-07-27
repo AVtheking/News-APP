@@ -14,13 +14,18 @@ import retrofit2.Response
 
 class NewsViewModel(val newsRepository: NewsRepository): ViewModel() {
 
-    val breakingNewsPage=1
-    val searchNewsPage=1
+    var breakingNewsPage=1
+    var searchNewsPage=1
+    var breakingNewsResponse:NewsResponse?=null
+    var searchNewsResponse:NewsResponse?=null
     fun getBreakingNews(countryCode: String) = liveData(Dispatchers.IO) {
         emit(Resource.Loading())
         try {
             val response = newsRepository.getBreakingNews(countryCode, breakingNewsPage)
             if (response.isSuccessful) {
+
+
+
                 emit(Resource.Success(response.body()))
             } else {
                 emit(Resource.Error(response.message()))
@@ -35,6 +40,7 @@ class NewsViewModel(val newsRepository: NewsRepository): ViewModel() {
             val response=newsRepository.getSearchNews(searchQuery,searchNewsPage)
             if(response.isSuccessful())
             {
+
                 emit(Resource.Success(response.body()))
             }
             else
